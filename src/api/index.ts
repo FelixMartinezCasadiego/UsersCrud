@@ -11,3 +11,5 @@ export const sendNewUser = ( firstName : string, lastName : string, age: number 
         age
     }
     ).then(({data}) => data);
+
+/* export const deleteUser = () => axios.delete() */

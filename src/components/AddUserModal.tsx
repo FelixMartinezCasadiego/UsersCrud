@@ -4,7 +4,11 @@ import { ModalBody, ModalFooter, FormGroup, ModalHeader, Button } from 'react-bo
 import { Context } from '../context/UserContext';
 import { sendNewUser } from '../api';
 
-function AddUserModal() {
+interface Props {
+    setIsloading: (e : boolean) => void
+};
+
+function AddUserModal({setIsloading} : Props) {
 
     const {openModal} : any = useContext(Context);
 
@@ -33,8 +37,9 @@ function AddUserModal() {
 
     const sendUser = () => {
         onSubmit;
-        addNewUSer()
-    }
+        addNewUSer();
+        setIsloading(true);
+    };
     
     return (
         <>
