@@ -13,9 +13,9 @@ const UsersContainer = () => {
     const { modalShow , openModal } : any = useContext(Context);
 
     useEffect(() => {
-        retriveUsers()
-            .then((resp) => setUsers(resp) )
-            .catch((err) => {throw new Error(err)})
+            retriveUsers()
+                .then((resp) => setUsers(resp) )
+                .catch((err) => {throw new Error(err)})
     }, [])
 
     return (

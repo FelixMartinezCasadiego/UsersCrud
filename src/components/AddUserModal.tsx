@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useContext, useState } from 'react';
 import { ModalBody, ModalFooter, FormGroup, ModalHeader, Button } from 'react-bootstrap';
 import { Context } from '../context/UserContext';
+import { sendNewUser } from '../api';
 
 function AddUserModal() {
 
@@ -24,10 +25,20 @@ function AddUserModal() {
     const onSubmit = (e : any) => {
         e.preventDefault();
     }
+
+    const addNewUSer = () => {
+        sendNewUser(formModal.firstName, formModal.lastName, formModal.age);
+        openModal(false)
+    }
+
+    const sendUser = () => {
+        onSubmit;
+        addNewUSer()
+    }
     
     return (
         <>
-        
+
             <ModalHeader>
                 <div>
                     <h3>Register User</h3>
@@ -44,6 +55,7 @@ function AddUserModal() {
                         name='firstName' 
                         onChange={onInputChange} 
                         onSubmit={onSubmit}
+                        required
                     />
                 </FormGroup>
                 <FormGroup>
@@ -55,6 +67,7 @@ function AddUserModal() {
                         name='lastName' 
                         onChange={onInputChange} 
                         onSubmit={onSubmit}
+                        required
                     />
                 </FormGroup>
                 <FormGroup>
@@ -66,12 +79,13 @@ function AddUserModal() {
                         name='age' 
                         onChange={onInputChange} 
                         onSubmit={onSubmit}
+                        required
                     />
                 </FormGroup>
             </ModalBody>
 
             <ModalFooter>
-                <Button variant='primary' onClick={onSubmit}>Add</Button>
+                <Button variant='primary' onClick={sendUser} >Add</Button>
                 <Button variant='danger' onClick={openModal} >Cancel</Button>
             </ModalFooter>
 
