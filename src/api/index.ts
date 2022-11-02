@@ -12,4 +12,4 @@ export const sendNewUser = ( firstName : string, lastName : string, age: number 
     }
     ).then(({data}) => data);
 
-/* export const deleteUser = () => axios.delete() */
+export const deleteUser = (id : number) => axios.delete(`http://localhost:5000/users/${id}`).then(({data}) => data);

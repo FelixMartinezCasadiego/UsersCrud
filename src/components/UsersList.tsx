@@ -1,10 +1,20 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button, Modal, ModalBody, ModalFooter, FormGroup, ModalHeader } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { Users } from '../api/typeApi';
+import {deleteUser} from '../api/index';
+import { useState } from 'react';
 
-interface Props { user: Users}
+interface Props { 
+    user: Users,
+    setIsloading: (e : boolean) => void
+}
 
-const UsersList = ({user} : Props) => {
+const UsersList = ({user , setIsloading} : Props) => {
+
+    const deleteUsers = () => {
+        deleteUser(user.id)
+        setIsloading(true)
+    }
 
     return (
         <>
@@ -23,7 +33,7 @@ const UsersList = ({user} : Props) => {
                 </td>
                 <td>
                     <Button variant='primary' className='mx-2'>Edit</Button>
-                    <Button variant='danger'>Delete</Button>
+                    <Button onClick={deleteUsers} variant='danger'>Delete</Button>
                 </td>
             </tr>
         </>

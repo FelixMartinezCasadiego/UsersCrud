@@ -44,7 +44,7 @@ const UsersContainer = () => {
                         </thead>
 
                         <tbody>
-                            {users.map((user) => <UsersList user={user} key={user.id}/> )}
+                            {users.map((user) => <UsersList user={user} key={user.id} setIsloading={setIsLoading}/> )}
                             {/* isLoading existe porque al realizar el pintado se encontraba en false, al volver a realizar la validadción se carga en true y debe a volver a pasarse a false */}
                         </tbody>
                     </Table>
