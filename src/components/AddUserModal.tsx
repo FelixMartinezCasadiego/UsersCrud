@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { ModalBody, ModalFooter, FormGroup, ModalHeader, Button } from 'react-bootstrap';
 import { Context } from '../context/UserContext';
 import { sendNewUser } from '../api';
@@ -10,13 +10,7 @@ interface Props {
 
 function AddUserModal({setIsloading} : Props) {
 
-    const {openModal} : any = useContext(Context);
-
-    const [formModal, setFormModal] = useState({
-        firstName: "" ,
-        lastName: "",
-        age: 0,
-    });
+    const {openModal, formModal, setFormModal} : any = useContext(Context);
 
     const onInputChange = (e : any) => {
         //Se debe abrir el setFormModal en un objeto, realizar spread operator para ir almacenando la información, luego abrir corchetes e indicar e.target.name donde name es el valor que fue definido en el estado y luego indicar que se desea realizar que en este caso es e.target.value

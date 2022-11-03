@@ -1,8 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 import { Users } from '../api/typeApi';
 import {deleteUser} from '../api/index';
+import EditUserModal from './EditUser';
 import { useState } from 'react';
+import {Link} from 'react-router-dom'
 
 interface Props { 
     user: Users,
@@ -10,6 +12,8 @@ interface Props {
 }
 
 const UsersList = ({user , setIsloading} : Props) => {
+
+    const [ShowEditModal, setShowEditModal] = useState(false);
 
     const deleteUsers = () => {
         deleteUser(user.id)
@@ -32,7 +36,11 @@ const UsersList = ({user , setIsloading} : Props) => {
                     {user.age}
                 </td>
                 <td>
-                    <Button variant='primary' className='mx-2'>Edit</Button>
+                    <Link 
+                        to={`/users/${user.id}`}
+                        className='mx-2 primary'
+                    > Edit
+                    </Link>
                     <Button onClick={deleteUsers} variant='danger'>Delete</Button>
                 </td>
             </tr>

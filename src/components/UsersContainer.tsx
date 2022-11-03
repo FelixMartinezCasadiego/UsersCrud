@@ -8,11 +8,11 @@ import { Context } from '../context/UserContext';
 
 const UsersContainer = () => {
 
-    const [users, setUsers] = useState<Users[] | undefined>([]);
-
-    const [isLoading, setIsLoading] = useState(true);
+    const [users, setUsers] = useState<Users[]>([]);
     
     const { modalShow , openModal } : any = useContext(Context);
+
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         
