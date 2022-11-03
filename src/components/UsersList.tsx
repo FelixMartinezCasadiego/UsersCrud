@@ -13,8 +13,6 @@ interface Props {
 
 const UsersList = ({user , setIsloading} : Props) => {
 
-    const [ShowEditModal, setShowEditModal] = useState(false);
-
     const deleteUsers = () => {
         deleteUser(user.id)
         setIsloading(true)
