@@ -1,10 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Modal, ModalFooter, ModalHeader } from 'react-bootstrap';
 import { Users } from '../api/typeApi';
 import {deleteUser} from '../api/index';
-import EditUserModal from './EditUser';
+import {Link} from 'react-router-dom';
 import { useState } from 'react';
-import {Link} from 'react-router-dom'
 
 interface Props { 
     user: Users,
@@ -13,8 +12,15 @@ interface Props {
 
 const UsersList = ({user , setIsloading} : Props) => {
 
+    const [modalMessageDeleted, setModalMessageDeleted] = useState(false);
+
     const deleteUsers = () => {
         deleteUser(user.id)
+        setModalMessageDeleted(true)
+    }
+
+    const toggleModalMessage = () => {
+        !setModalMessageDeleted
         setIsloading(true)
     }
 
@@ -42,6 +48,15 @@ const UsersList = ({user , setIsloading} : Props) => {
                     <Button onClick={deleteUsers} variant='danger'>Delete</Button>
                 </td>
             </tr>
+
+            <Modal show={modalMessageDeleted}>
+                <ModalHeader>
+                    <h3>User correctly deleted</h3>
+                </ModalHeader>
+                <ModalFooter>
+                    <Button className='primary' onClick={toggleModalMessage} >Accept</Button>
+                </ModalFooter>
+            </Modal>
         </>
   )
 }

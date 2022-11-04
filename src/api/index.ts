@@ -23,7 +23,7 @@ export const editUsers = (id : number, firstName : string, lastName : string, ag
     }
     ).then(({data}) => data);
 
-export const userDetails = (id : number) => axios.get(`http://localhost:5000/users/${id}`).then(({data}) => data)
+export const userDetails = (id : number | string | undefined) => axios.get(`http://localhost:5000/users/${id}`).then(({data}) => data)
 
 
 // Config para parámetros de autorización.

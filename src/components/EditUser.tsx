@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
-import { FormGroup, Button } from 'react-bootstrap';
+import { FormGroup, Button, Modal, ModalHeader, ModalFooter } from 'react-bootstrap';
 import { editUsers, userDetails } from '../api';
 import {useParams, Link} from 'react-router-dom';
 import { Users } from '../api/typeApi';
@@ -11,7 +11,9 @@ const EditUser = () => {
 
     let userId : string = params && params.id ? params.id : '';
 
-    const [userDetail, setUserDetail] = useState<Users>()
+    const [userDetail, setUserDetail] = useState<Users>();
+
+    const [messageUpdateModal, setMessageUpdateModal] = useState(false);
 
     useEffect(() => {
       userDetails(userId)
@@ -37,7 +39,14 @@ const EditUser = () => {
         if(userDetail){
             editUsers(userDetail.id ,userDetail.firstName, userDetail.lastName, userDetail.age)}
         else {console.log('Crear mensaje de error')
-        };
+            };
+        setMessageUpdateModal(true);
+    }
+
+    const toggleModalMessage = () => {
+        if(messageUpdateModal === true){
+            setMessageUpdateModal(false)
+        }
     }
 
     return (
@@ -46,7 +55,7 @@ const EditUser = () => {
 
                 <>
                     <div>
-                        <h3> User {userDetail.firstName} </h3>
+                        <h3> User Edit </h3>
                     </div>
 
                     <div>
@@ -91,10 +100,19 @@ const EditUser = () => {
                         </FormGroup>
                     </div>
 
-                    <div>
-                        <Button variant='primary' onClick={submitEditUser} >Add</Button>
-                        <Link to={'/'} className='secondary' >Return</Link>
+                    <div className='my-3'>
+                        <Button variant='primary' onClick={submitEditUser} >Update</Button>
+                        <Link to={'/'} className='secondary mx-2' >Return</Link>
                     </div>
+
+                    <Modal show={messageUpdateModal} >
+                        <ModalHeader>
+                            <h3>Correct Update</h3>
+                        </ModalHeader>
+                        <ModalFooter>
+                            <Button className='primary' onClick={toggleModalMessage}>Return</Button>
+                        </ModalFooter>
+                    </Modal>
                 </>
             : ''}
             
